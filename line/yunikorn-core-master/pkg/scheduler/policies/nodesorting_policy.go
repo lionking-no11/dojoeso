@@ -25,12 +25,13 @@ import (
 type SortingPolicy int
 
 const (
-	BinPackingPolicy SortingPolicy = iota
-	FairnessPolicy
+	BinPackingPolicy SortingPolicy = iota // 從0開始自動遞增 -> 0
+	FairnessPolicy // -> 1
+  SimulatedAnnealingPolicy // -> 2
 )
 
 func (nsp SortingPolicy) String() string {
-	return [...]string{"binpacking", "fair"}[nsp]
+	return [...]string{"binpacking", "fair", "sa"}[nsp] /* 新增sa */
 }
 
 func SortingPolicyFromString(str string) (SortingPolicy, error) {
@@ -40,6 +41,9 @@ func SortingPolicyFromString(str string) (SortingPolicy, error) {
 		return FairnessPolicy, nil
 	case BinPackingPolicy.String():
 		return BinPackingPolicy, nil
+  // 新增sa的case
+  case SimulatedAnnealingPolicy.String():
+    return SimulatedAnnealingPolicy, nil
 	default:
 		return FairnessPolicy, fmt.Errorf("undefined policy: %s", str)
 	}
