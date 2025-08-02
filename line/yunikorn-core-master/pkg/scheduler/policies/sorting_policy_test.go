@@ -32,6 +32,7 @@ func TestAppFromString(t *testing.T) {
 		{"EmptyString", "", FifoSortPolicy, false},
 		{"FifoString", "fifo", FifoSortPolicy, false},
 		{"FairString", "fair", FairSortPolicy, false},
+		{"SAPolicyString", "sa", SimulatedAnnealingPolicy, false},  // 新增sa
 		{"StatusString", "stateaware", FifoSortPolicy, false},
 		{"UnknownString", "unknown", Undefined, true},
 	}
@@ -56,6 +57,7 @@ func TestAppToString(t *testing.T) {
 	}{
 		{"FifoString", FifoSortPolicy, "fifo"},
 		{"FairString", FairSortPolicy, "fair"},
+		{"SAPolicyString", SimulatedAnnealingPolicy, "sa"},  // 新增Sa
 		{"StatusString", deprecatedStateAwarePolicy, "stateaware"},
 		{"DefaultString", Undefined, "undefined"},
 		{"NoneString", someSP, "fifo"},
