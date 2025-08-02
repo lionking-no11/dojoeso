@@ -32,6 +32,7 @@ func TestSortingPolicyFromString(t *testing.T) {
 		{"EmptyString", "", FairnessPolicy, false},
 		{"FairString", "fair", FairnessPolicy, false},
 		{"BinString", "binpacking", BinPackingPolicy, false},
+		{"SAPolicyString", "sa", SimulatedAnnealingPolicy, false},		//新增sa
 		{"UnknownString", "unknown", FairnessPolicy, true},
 	}
 	for _, tt := range tests {
@@ -55,6 +56,7 @@ func TestSortingPolicyToString(t *testing.T) {
 	}{
 		{"FairString", FairnessPolicy, "fair"},
 		{"BinString", BinPackingPolicy, "binpacking"},
+		{"SAPolicyString", SimulatedAnnealingPolicy, "sa"},		//新增sa
 		{"NoneString", someSP, "binpacking"},
 	}
 	for _, tt := range tests {
