@@ -49,10 +49,10 @@ func SortPolicyFromString(str string) (SortPolicy, error) {
 		return FairSortPolicy, nil
 	// 新增sa
 	case SimulatedAnnealingPolicy.String():  
-		log.Log(log.Scheduling).Info("Using Simulated Annealing scheduling policy")  // 顯示目前策略 
+		log.Logger(log.Scheduling).Info("Using Simulated Annealing scheduling policy")  // 顯示目前策略 
     	return SimulatedAnnealingPolicy, nil		
 	case deprecatedStateAwarePolicy.String():
-		log.Log(log.Deprecation).Warn("Sort policy 'stateaware' is deprecated; using 'fifo' instead")
+		log.Logger(log.Deprecation).Warn("Sort policy 'stateaware' is deprecated; using 'fifo' instead")
 		return FifoSortPolicy, nil
 	default:
 		return Undefined, fmt.Errorf("undefined policy: %s", str)
