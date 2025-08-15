@@ -27,7 +27,7 @@ type SortingPolicy int
 const (
 	BinPackingPolicy SortingPolicy = iota // 從0開始自動遞增 -> 0
 	FairnessPolicy // -> 1
-  SimulatedAnnealingPolicy // -> 2
+  	SAPolicy // -> 2
 )
 
 func (nsp SortingPolicy) String() string {
@@ -42,8 +42,8 @@ func SortingPolicyFromString(str string) (SortingPolicy, error) {
 	case BinPackingPolicy.String():
 		return BinPackingPolicy, nil
   // 新增sa的case
-  case SimulatedAnnealingPolicy.String():
-    return SimulatedAnnealingPolicy, nil
+  case SAPolicy.String():
+    return SAPolicy, nil
 	default:
 		return FairnessPolicy, fmt.Errorf("undefined policy: %s", str)
 	}
