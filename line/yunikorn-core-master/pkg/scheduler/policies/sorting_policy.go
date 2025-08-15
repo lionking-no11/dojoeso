@@ -23,19 +23,10 @@ import (
 
 	"github.com/apache/yunikorn-core/pkg/log"
 	
-	"math"	// 新增這個library(?)
-	"math/rand"
-	"time"	// 給seed的亂數用
 )
 
 // Sort type for queues & apps.
 type SortPolicy int
-// 新增saPolicy struct
-type saPolicy struct{
-	initialTemp float64		// 老師說要改專有名詞
-	coolingRate float64
-	seed int64		// 你哪位
-}	
 
 const (
 	FifoSortPolicy             SortPolicy = iota // first in first out, submit time
@@ -47,15 +38,6 @@ const (
 
 func (s SortPolicy) String() string {
 	return [...]string{"fifo", "fair", "sa", "stateaware", "undefined"}[s]		// 新增sa
-}
-
-// 新增saPolicy的參數寫入
-func NewSAPolicy() *saPolicy {
-	return &saPolicy {
-		initialTemp: 100.0,
-		coolingRate: 0.95,
-		seed:  time.Now().UnixNano(), // 目前是亂數，可用固定值
-	}
 }
 
 func SortPolicyFromString(str string) (SortPolicy, error) {
