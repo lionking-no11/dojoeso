@@ -114,6 +114,11 @@ func sortApplications(apps map[string]*Application, sortType policies.SortPolicy
 		} else {
 			sortApplicationsBySubmissionTimeAndPriority(sortedApps)
 		}
+		 
+	// 新增SA policy
+	case policies.SimulatedAnnealingPolicy:
+			sortApplicationsBySA(sortedApps, globalResource)
+		// 到這邊
 	}
 	metrics.GetSchedulerMetrics().ObserveAppSortingLatency(sortingStart)
 	return sortedApps
